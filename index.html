@@ -176,7 +176,7 @@
           const { done, value } = await reader.read();
           if (done) break;
           buf += dec.decode(value, { stream: true });
-          placeholder.innerHTML = `<strong>AI:</strong> ${buf}`;
+          placeholder.innerHTML = `<strong>AI(FA):</strong> ${buf}`;
           msgs.scrollTop = msgs.scrollHeight;
         }
       } catch (err) {
