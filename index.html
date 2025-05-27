@@ -1,174 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alfa is Super Awesome!</title>
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      line-height: 1.6;
-    }
-    .hero {
-      background: url('https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/9bf6eecd366063218c921522c81550db.jpg') no-repeat center/cover;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-    }
-    .hero h1 { font-size: 3rem; font-weight: 700; }
-    .btn-treats { margin-top: 1rem; background-color: #007BFF; border: none; }
-    .section-title { font-weight: 700; margin-bottom: 1rem; }
-    .bio-card {
-      background: #fff; border-radius: .5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 2rem; margin-bottom: 2rem;
-    }
-
-    /* Chatbot styles */
-    #chatbot-icon {
-      position: fixed; bottom: 24px; right: 24px;
-      font-size: 2rem; background: #007BFF; color: #fff;
-      border: none; border-radius: 50%; width: 56px; height: 56px;
-      cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      transition: transform .2s;
-    }
-    #chatbot-icon:hover { transform: scale(1.1); }
-
-    #chatbot-widget {
-      position: fixed; bottom: 96px; right: 24px;
-      width: 320px; max-height: 400px; background: #fff;
-      border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      display: none; flex-direction: column; overflow: hidden;
-      font-family: 'Roboto', sans-serif;
-    }
-    #chatbot-header {
-      background: #007BFF; color: #fff; padding: 8px 12px;
-      font-weight: 700; display: flex; justify-content: space-between;
-      align-items: center;
-    }
-    #chatbot-messages {
-      flex: 1; padding: 8px; overflow-y: auto;
-    }
-    #chatbot-messages .message { margin-bottom: 8px; }
-    #chatbot-messages .message.user { text-align: right; }
-    #chatbot-form {
-      display: flex; border-top: 1px solid #eee;
-    }
-    #chatbot-input {
-      flex: 1; border: none; padding: 8px;
-    }
-    #chatbot-form button {
-      background: #007BFF; color: #fff; border: none;
-      padding: 0 12px; cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Alfa is Super Awesome! — AI Chat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 min-h-screen flex flex-col">
 
   <!-- Hero Section -->
-  <header class="hero">
-    <div class="text-center">
-      <h1 class="animated-hover">Alfa is Super Awesome!</h1>
-      <p class="lead">Pongpisit L. &mdash; Photographer</p>
-      <a href="#" class="btn btn-lg btn-treats animated-hover">Send me treats</a>
+  <header class="flex-shrink-0 bg-cover bg-center h-64" style="background-image:url('https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/9bf6eecd366063218c921522c81550db.jpg')">
+    <div class="h-full w-full bg-black bg-opacity-40 flex items-center justify-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white">Alfa is Super Awesome!</h1>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="container my-5">
-
-    <!-- Bio Section -->
-    <section class="bio-card row">
-      <div class="col-md-6">
-        <h2 class="section-title">Bio</h2>
+  <!-- Bio & Video -->
+  <main class="flex-grow container mx-auto px-4 py-8 space-y-12 text-white">
+    <section class="md:flex md:space-x-8 bg-gray-800 p-6 rounded-lg shadow-lg">
+      <div class="md:w-1/2 space-y-4">
+        <h2 class="text-2xl font-bold">Bio</h2>
         <p>I enjoy long walks, playing fetch, and swimming in the pool. I am a well-behaved and obedient dog who loves spending time with my human family and other dogs.</p>
       </div>
-      <div class="col-md-6 text-center">
+      <div class="md:w-1/2">
         <img src="https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/b8ddb1440401539e58071241c6382a14.jpg"
-             alt="Dog Portrait" class="img-fluid rounded">
+             alt="Pongpisit L." class="rounded-lg shadow-lg w-full h-auto object-cover">
       </div>
     </section>
 
-    <!-- Video Section -->
-    <section>
-      <h2 class="section-title text-center">Recent Swimming</h2>
-      <div class="embed-responsive embed-responsive-16by9 mb-4">
-        <iframe class="embed-responsive-item"
-                src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true"
-                allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
-                allowfullscreen></iframe>
+    <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold mb-4">Recent Swimming</h2>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe
+          src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true"
+          allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          class="rounded-lg overflow-hidden"
+        ></iframe>
       </div>
     </section>
-
   </main>
 
-  <!-- Chatbot Icon & Widget -->
-  <button id="chatbot-icon" title="Chat with AI">🤖</button>
-  <div id="chatbot-widget">
-    <div id="chatbot-header">
-      AI Chat <span id="chatbot-close" style="cursor:pointer;">✕</span>
+  <!-- Chatbot Icon -->
+  <button id="chatbot-icon"
+          class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 text-2xl shadow-lg transition-transform transform hover:scale-110">
+    🤖
+  </button>
+
+  <!-- Chatbot Widget -->
+  <div id="chatbot-widget"
+       class="fixed bottom-24 right-6 w-80 max-h-96 bg-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col hidden">
+    <!-- Header -->
+    <div class="bg-blue-600 text-white px-4 py-2 flex justify-between items-center">
+      <span class="font-semibold">AI Chat</span>
+      <button id="chatbot-close" class="text-xl leading-none">✕</button>
     </div>
-    <div id="chatbot-messages"></div>
-    <form id="chatbot-form">
-      <input type="text" id="chatbot-input" placeholder="Say something…" autocomplete="off" required>
-      <button type="submit">Send</button>
+    <!-- Messages -->
+    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm"></div>
+    <!-- Form -->
+    <form id="chatbot-form" class="p-3 bg-gray-700 space-y-3">
+      <div>
+        <label for="promptInput" class="block text-gray-300 mb-1">Prompt</label>
+        <input id="promptInput" type="text" required
+               class="w-full px-3 py-2 rounded bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="endpointSelect" class="block text-gray-300 mb-1">Model</label>
+        <select id="endpointSelect"
+                class="w-full px-3 py-2 rounded bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="llama4_scout">Llama-4 Scout 17B</option>
+          <option value="llama3_70b">Llama 3.3 70B (FP8 Fast)</option>
+          <option value="llama3_8b" selected>Llama 3.1 8B (Fast)</option>
+          <option value="gemma3_12b">Gemma 3 12B (IT)</option>
+          <option value="mistral_24b">Mistral Small 3.1 24B</option>
+          <option value="qwq32b">QwQ 32B</option>
+          <option value="qwen_coder_32b">Qwen2.5-Coder 32B</option>
+          <option value="phi_2">Phi-2 (Microsoft)</option>
+          <option value="openchat_3_5">OpenChat 3.5</option>
+          <option value="deepseek_math">DeepSeek Math 7B</option>
+          <option value="deepseek_r1">DeepSeek R1 Distill Qwen 32B</option>
+          <option value="rfp_cloudflare">RFP-Cloudflare (AutoRAG)</option>
+        </select>
+      </div>
+      <button type="submit"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded font-semibold">
+        Send
+      </button>
     </form>
   </div>
 
-  <!-- Bootstrap JS & Dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- Chatbot Front-end Logic -->
   <script>
-    const icon    = document.getElementById('chatbot-icon');
-    const widget  = document.getElementById('chatbot-widget');
-    const closeBtn= document.getElementById('chatbot-close');
-    const form    = document.getElementById('chatbot-form');
-    const input   = document.getElementById('chatbot-input');
-    const messages= document.getElementById('chatbot-messages');
+    const icon       = document.getElementById('chatbot-icon');
+    const widget     = document.getElementById('chatbot-widget');
+    const closeBtn   = document.getElementById('chatbot-close');
+    const form       = document.getElementById('chatbot-form');
+    const input      = document.getElementById('promptInput');
+    const select     = document.getElementById('endpointSelect');
+    const messages   = document.getElementById('chatbot-messages');
 
-    // ← replace with your published Worker URL:
-    const ENDPOINT = 'https://YOUR_WORKER_SUBDOMAIN.workers.dev';
+    const GATEWAY_BASE = 'https://ai-gateway.pongpisit.com';
 
-    icon.addEventListener('click',  () => widget.style.display = 'flex');
-    closeBtn.addEventListener('click', () => widget.style.display = 'none');
+    icon.addEventListener('click',  () => widget.classList.remove('hidden'));
+    closeBtn.addEventListener('click', () => widget.classList.add('hidden'));
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
-      appendMsg('user', text);
+      const prompt  = input.value.trim();
+      const model   = select.value;
+      if (!prompt) return;
+
+      appendMessage('User', prompt, 'text-blue-400 text-right');
       input.value = '';
+
+      const placeholder = appendMessage('AI', '...', 'text-green-400');
+
       try {
-        const res = await fetch(ENDPOINT, {
+        const res = await fetch(`${GATEWAY_BASE}/${model}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
+          body: JSON.stringify({ prompt })
         });
-        const { reply } = await res.json();
-        appendMsg('bot', reply);
+        if (!res.ok) throw new Error(await res.text());
+
+        const reader = res.body.getReader();
+        const dec    = new TextDecoder();
+        let buf = '';
+
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += dec.decode(value, { stream: true });
+          placeholder.innerHTML = `<strong>AI:</strong> ${buf}`;
+        }
       } catch (err) {
-        appendMsg('bot', '💥 Error, please try again.');
-        console.error(err);
+        placeholder.innerHTML = `<strong>Error:</strong> ${err.message}`;
       }
     });
 
-    function appendMsg(who, text) {
+    function appendMessage(who, text, classes) {
       const div = document.createElement('div');
-      div.className = 'message ' + who;
-      div.textContent = text;
-      messages.append(div);
+      div.className = classes;
+      div.innerHTML = `<strong>${who}:</strong> ${text}`;
+      messages.appendChild(div);
       messages.scrollTop = messages.scrollHeight;
+      return div;
     }
   </script>
 </body>
