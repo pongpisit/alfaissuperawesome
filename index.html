@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alfa is Super Awesome! — Portfolio</n></title>
+  <title>Alfa is Super Awesome! — Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>body { background: #1a202c; color: #edf2f7; font-family: sans-serif; }</style>
 </head>
@@ -32,7 +32,17 @@
     <!-- Recent Swimming -->
     <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
       <h2 class="text-3xl font-semibold mb-4">Recent Swimming</h2>
-      <div class="grid grid-cols-2 gap-4">
+      <!-- Video Embed -->
+      <div class="aspect-w-16 aspect-h-9 mb-6">
+        <iframe
+          src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true"
+          allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          class="rounded-lg overflow-hidden w-full h-full"
+        ></iframe>
+      </div>
+      <!-- Gallery -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="space-y-2">
           <img src="./562e9f8f46945ed2056e0441295380f2.jpg" alt="Pong and Alfa" class="rounded-lg w-full object-cover" />
           <h3 class="font-bold">Pong and Alfa</h3>
@@ -44,7 +54,7 @@
           <p>I am pawsitively enjoying this cake-licious treat! &mdash; <em>2022</em></p>
         </div>
         <div class="space-y-2">
-          <img src="./473a45301805739b99feddc6a3acaecfe.jpg" alt="Happy BarkDay cake" class="rounded-lg w-full object-cover" />
+          <img src="./473a45301805739b99fedc6a3acaecfe.jpg" alt="Happy BarkDay cake" class="rounded-lg w-full object-cover" />
           <h3 class="font-bold">Happy BarkDay Cake</h3>
           <p>ALFA and MOKO &mdash; <em>2022</em></p>
         </div>
@@ -94,7 +104,7 @@
 
     <!-- Work With Me -->
     <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
-      <h2 class="text-3xl font-semibold mb-4">Work with Me</n></h2>
+      <h2 class="text-3xl font-semibold mb-4">Work with Me</h2>
       <p><strong>Email:</strong> <a href="mailto:alfa@pongpisit.com" class="text-yellow-300">alfa@pongpisit.com</a></p>
       <p class="mt-2"><strong>Address:</strong><br/>88, Ashton Morph, Bangkok, Thailand</p>
     </section>
@@ -110,7 +120,7 @@
       <span>AI Chat</span>
       <button id="chatbot-close">✕</button>
     </div>
-    <div id="messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm"></ndiv>
+    <div id="messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm flex flex-col"></div>
     <form id="chat-form" class="p-3 bg-gray-700">
       <input id="prompt" type="text" placeholder="Type your message..." required
              class="w-full px-3 py-2 rounded bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -126,11 +136,17 @@
     const input = document.getElementById('prompt');
     const msgs = document.getElementById('messages');
 
-    toggle.addEventListener('click', () => widget.classList.toggle('hidden'));
+    toggle.addEventListener('click', () => {
+      widget.classList.toggle('hidden');
+      setTimeout(() => input.focus(), 100);
+    });
     closeBtn.addEventListener('click', () => widget.classList.add('hidden'));
 
     function append(who, text) {
       const d = document.createElement('div');
+      d.className = who === 'You'
+        ? 'self-end bg-blue-500 text-white rounded px-3 py-1 max-w-xs'
+        : 'self-start bg-gray-700 text-gray-200 rounded px-3 py-1 max-w-xs';
       d.innerHTML = `<strong>${who}:</strong> ${text}`;
       msgs.appendChild(d);
       msgs.scrollTop = msgs.scrollHeight;
@@ -161,8 +177,10 @@
           if (done) break;
           buf += dec.decode(value, { stream: true });
           placeholder.innerHTML = `<strong>AI:</strong> ${buf}`;
+          msgs.scrollTop = msgs.scrollHeight;
         }
       } catch (err) {
+        placeholder.className = 'self-start text-red-400';
         placeholder.innerHTML = `<strong>Error:</strong> ${err.message}`;
       }
     });
