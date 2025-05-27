@@ -9,7 +9,8 @@
 <body class="bg-gray-900 min-h-screen flex flex-col">
 
   <!-- Hero Section -->
-  <header class="flex-shrink-0 bg-cover bg-center h-64" style="background-image:url('https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/9bf6eecd366063218c921522c81550db.jpg')">
+  <header class="flex-shrink-0 bg-cover bg-center h-64"
+          style="background-image:url('https://…/9bf6eecd366063218c921522c81550db.jpg')">
     <div class="h-full w-full bg-black bg-opacity-40 flex items-center justify-center">
       <h1 class="text-4xl md:text-5xl font-bold text-white">Alfa is Super Awesome!</h1>
     </div>
@@ -20,44 +21,37 @@
     <section class="md:flex md:space-x-8 bg-gray-800 p-6 rounded-lg shadow-lg">
       <div class="md:w-1/2 space-y-4">
         <h2 class="text-2xl font-bold">Bio</h2>
-        <p>I enjoy long walks, playing fetch, and swimming in the pool. I am a well-behaved and obedient dog who loves spending time with my human family and other dogs.</p>
+        <p>I enjoy long walks, playing fetch, and swimming in the pool…</p>
       </div>
       <div class="md:w-1/2">
-        <img src="https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/b8ddb1440401539e58071241c6382a14.jpg"
-             alt="Pongpisit L." class="rounded-lg shadow-lg w-full h-auto object-cover">
+        <img src="https://…/b8ddb1440401539e58071241c6382a14.jpg"
+             alt="Pongpisit L." class="rounded-lg shadow-lg w-full object-cover">
       </div>
     </section>
-
     <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
       <h2 class="text-2xl font-bold mb-4">Recent Swimming</h2>
       <div class="aspect-w-16 aspect-h-9">
-        <iframe
-          src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true"
-          allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
-          allowfullscreen
-          class="rounded-lg overflow-hidden"
-        ></iframe>
+        <iframe src="https://…/7ab37eaedf14978dc2ebe6333985cd54/iframe?autoplay=true&loop=true"
+                allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen class="rounded-lg overflow-hidden"></iframe>
       </div>
     </section>
   </main>
 
   <!-- Chatbot Icon -->
   <button id="chatbot-icon"
-          class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 text-2xl shadow-lg transition-transform transform hover:scale-110">
+          class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 text-2xl shadow-lg">
     🤖
   </button>
 
   <!-- Chatbot Widget -->
   <div id="chatbot-widget"
        class="fixed bottom-24 right-6 w-80 max-h-96 bg-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col hidden">
-    <!-- Header -->
     <div class="bg-blue-600 text-white px-4 py-2 flex justify-between items-center">
       <span class="font-semibold">AI Chat</span>
-      <button id="chatbot-close" class="text-xl leading-none">✕</button>
+      <button id="chatbot-close" class="text-xl">✕</button>
     </div>
-    <!-- Messages -->
-    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm"></div>
-    <!-- Form -->
+    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm text-white"></div>
     <form id="chatbot-form" class="p-3 bg-gray-700 space-y-3">
       <div>
         <label for="promptInput" class="block text-gray-300 mb-1">Prompt</label>
@@ -68,18 +62,8 @@
         <label for="endpointSelect" class="block text-gray-300 mb-1">Model</label>
         <select id="endpointSelect"
                 class="w-full px-3 py-2 rounded bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="llama4_scout">Llama-4 Scout 17B</option>
-          <option value="llama3_70b">Llama 3.3 70B (FP8 Fast)</option>
+          <!-- you can ignore this if you're locking to one model -->
           <option value="llama3_8b" selected>Llama 3.1 8B (Fast)</option>
-          <option value="gemma3_12b">Gemma 3 12B (IT)</option>
-          <option value="mistral_24b">Mistral Small 3.1 24B</option>
-          <option value="qwq32b">QwQ 32B</option>
-          <option value="qwen_coder_32b">Qwen2.5-Coder 32B</option>
-          <option value="phi_2">Phi-2 (Microsoft)</option>
-          <option value="openchat_3_5">OpenChat 3.5</option>
-          <option value="deepseek_math">DeepSeek Math 7B</option>
-          <option value="deepseek_r1">DeepSeek R1 Distill Qwen 32B</option>
-          <option value="rfp_cloudflare">RFP-Cloudflare (AutoRAG)</option>
         </select>
       </div>
       <button type="submit"
@@ -90,32 +74,26 @@
   </div>
 
   <script>
-    const icon       = document.getElementById('chatbot-icon');
-    const widget     = document.getElementById('chatbot-widget');
-    const closeBtn   = document.getElementById('chatbot-close');
-    const form       = document.getElementById('chatbot-form');
-    const input      = document.getElementById('promptInput');
-    const select     = document.getElementById('endpointSelect');
-    const messages   = document.getElementById('chatbot-messages');
-
-    const GATEWAY_BASE = 'https://ai-gateway.pongpisit.com';
+    const icon     = document.getElementById('chatbot-icon');
+    const widget   = document.getElementById('chatbot-widget');
+    const closeBtn = document.getElementById('chatbot-close');
+    const form     = document.getElementById('chatbot-form');
+    const input    = document.getElementById('promptInput');
+    const messages = document.getElementById('chatbot-messages');
 
     icon.addEventListener('click',  () => widget.classList.remove('hidden'));
     closeBtn.addEventListener('click', () => widget.classList.add('hidden'));
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
-      const prompt  = input.value.trim();
-      const model   = select.value;
+      const prompt = input.value.trim();
       if (!prompt) return;
-
-      appendMessage('User', prompt, 'text-blue-400 text-right');
+      append('User', prompt, 'text-blue-400 text-right');
       input.value = '';
-
-      const placeholder = appendMessage('AI', '...', 'text-green-400');
+      const placeholder = append('AI', '...', 'text-green-400');
 
       try {
-        const res = await fetch(`${GATEWAY_BASE}/${model}`, {
+        const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt })
@@ -125,7 +103,6 @@
         const reader = res.body.getReader();
         const dec    = new TextDecoder();
         let buf = '';
-
         while (true) {
           const { value, done } = await reader.read();
           if (done) break;
@@ -137,13 +114,13 @@
       }
     });
 
-    function appendMessage(who, text, classes) {
-      const div = document.createElement('div');
-      div.className = classes;
-      div.innerHTML = `<strong>${who}:</strong> ${text}`;
-      messages.appendChild(div);
+    function append(who, txt, classes) {
+      const d = document.createElement('div');
+      d.className = classes;
+      d.innerHTML = `<strong>${who}:</strong> ${txt}`;
+      messages.appendChild(d);
       messages.scrollTop = messages.scrollHeight;
-      return div;
+      return d;
     }
   </script>
 </body>
