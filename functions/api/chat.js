@@ -13,7 +13,7 @@ const CORS_HEADERS = {
 export async function onRequest(context) {
   const { request, env } = context;
 
-  // handle CORS preflight
+  // Handle CORS preflight
   if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
@@ -38,20 +38,25 @@ export async function onRequest(context) {
   }
 
   try {
-    // call the single LLM model
+    // Call the model via Cloudflare AI Gateway
     const aiResponse = await env.AI.run(
       "@cf/meta/llama-3.1-8b-instruct-fast",
-      { prompt }
+      { prompt },
+      {
+        gateway: {
+          id: "pongai",
+        },
+      }
     );
 
-    // pull out the text content
+    // Extract text
     const text =
       aiResponse.choices?.[0]?.message?.content ||
       aiResponse.choices?.[0]?.text ||
       aiResponse.response ||
       JSON.stringify(aiResponse);
 
-    // return as plain‐text so your client can stream it
+    // Stream back as plain text
     return new Response(text, {
       status: 200,
       headers: {
@@ -59,7 +64,6 @@ export async function onRequest(context) {
         "Content-Type": "text/plain; charset=utf-8",
       },
     });
-
   } catch (err) {
     return new Response(`AI Error: ${err.message}`, {
       status: 500,
