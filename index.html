@@ -10,7 +10,7 @@
 
   <!-- Hero Section -->
   <header class="flex-shrink-0 bg-cover bg-center h-64"
-          style="background-image:url('https://…/9bf6eecd366063218c921522c81550db.jpg')">
+          style="background-image:url('./9bf6eecd366063218c921522c81550db.jpg')">
     <div class="h-full w-full bg-black bg-opacity-40 flex items-center justify-center">
       <h1 class="text-4xl md:text-5xl font-bold text-white">Alfa is Super Awesome!</h1>
     </div>
@@ -21,50 +21,49 @@
     <section class="md:flex md:space-x-8 bg-gray-800 p-6 rounded-lg shadow-lg">
       <div class="md:w-1/2 space-y-4">
         <h2 class="text-2xl font-bold">Bio</h2>
-        <p>I enjoy long walks, playing fetch, and swimming in the pool…</p>
+        <p>I enjoy long walks, playing fetch, and swimming in the pool. I am a well-behaved and obedient dog who loves spending time with my human family and other dogs.</p>
       </div>
       <div class="md:w-1/2">
-        <img src="https://…/b8ddb1440401539e58071241c6382a14.jpg"
-             alt="Pongpisit L." class="rounded-lg shadow-lg w-full object-cover">
+        <img src="./b8ddb1440401539e58071241c6382a14.jpg"
+             alt="Pongpisit L." class="rounded-lg shadow-lg w-full h-auto object-cover">
       </div>
     </section>
+
     <section class="bg-gray-800 p-6 rounded-lg shadow-lg">
       <h2 class="text-2xl font-bold mb-4">Recent Swimming</h2>
       <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://…/7ab37eaedf14978dc2ebe6333985cd54/iframe?autoplay=true&loop=true"
-                allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
-                allowfullscreen class="rounded-lg overflow-hidden"></iframe>
+        <iframe
+          src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true"
+          allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          class="rounded-lg overflow-hidden"
+        ></iframe>
       </div>
     </section>
   </main>
 
   <!-- Chatbot Icon -->
   <button id="chatbot-icon"
-          class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 text-2xl shadow-lg">
+          class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 text-2xl shadow-lg transition-transform transform hover:scale-110">
     🤖
   </button>
 
   <!-- Chatbot Widget -->
   <div id="chatbot-widget"
        class="fixed bottom-24 right-6 w-80 max-h-96 bg-gray-800 rounded-lg shadow-xl overflow-hidden flex flex-col hidden">
+    <!-- Header -->
     <div class="bg-blue-600 text-white px-4 py-2 flex justify-between items-center">
       <span class="font-semibold">AI Chat</span>
-      <button id="chatbot-close" class="text-xl">✕</button>
+      <button id="chatbot-close" class="text-xl leading-none">✕</button>
     </div>
-    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm text-white"></div>
+    <!-- Messages -->
+    <div id="chatbot-messages" class="flex-1 p-3 overflow-y-auto space-y-2 text-sm"></div>
+    <!-- Form -->
     <form id="chatbot-form" class="p-3 bg-gray-700 space-y-3">
       <div>
         <label for="promptInput" class="block text-gray-300 mb-1">Prompt</label>
         <input id="promptInput" type="text" required
                class="w-full px-3 py-2 rounded bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      </div>
-      <div>
-        <label for="endpointSelect" class="block text-gray-300 mb-1">Model</label>
-        <select id="endpointSelect"
-                class="w-full px-3 py-2 rounded bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <!-- you can ignore this if you're locking to one model -->
-          <option value="llama3_8b" selected>Llama 3.1 8B (Fast)</option>
-        </select>
       </div>
       <button type="submit"
               class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded font-semibold">
@@ -88,9 +87,10 @@
       e.preventDefault();
       const prompt = input.value.trim();
       if (!prompt) return;
-      append('User', prompt, 'text-blue-400 text-right');
+
+      appendMessage('User', prompt, 'text-blue-400 text-right');
       input.value = '';
-      const placeholder = append('AI', '...', 'text-green-400');
+      const placeholder = appendMessage('AI', '...', 'text-green-400');
 
       try {
         const res = await fetch('/api/chat', {
@@ -103,6 +103,7 @@
         const reader = res.body.getReader();
         const dec    = new TextDecoder();
         let buf = '';
+
         while (true) {
           const { value, done } = await reader.read();
           if (done) break;
@@ -114,13 +115,13 @@
       }
     });
 
-    function append(who, txt, classes) {
-      const d = document.createElement('div');
-      d.className = classes;
-      d.innerHTML = `<strong>${who}:</strong> ${txt}`;
-      messages.appendChild(d);
+    function appendMessage(who, text, classes) {
+      const div = document.createElement('div');
+      div.className = classes;
+      div.innerHTML = `<strong>${who}:</strong> ${text}`;
+      messages.appendChild(div);
       messages.scrollTop = messages.scrollHeight;
-      return d;
+      return div;
     }
   </script>
 </body>
