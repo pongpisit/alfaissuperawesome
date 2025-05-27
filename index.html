@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Alfa is Awesome!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alfa is Super Awesome!</title>
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <!-- Bootstrap CSS -->
@@ -24,25 +24,50 @@
       color: #fff;
       text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-    }
-    .btn-treats {
-      margin-top: 1rem;
-      background-color: #007BFF;
-      border: none;
-    }
-    .section-title {
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
+    .hero h1 { font-size: 3rem; font-weight: 700; }
+    .btn-treats { margin-top: 1rem; background-color: #007BFF; border: none; }
+    .section-title { font-weight: 700; margin-bottom: 1rem; }
     .bio-card {
-      background: #fff;
-      border-radius: .5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 2rem;
-      margin-bottom: 2rem;
+      background: #fff; border-radius: .5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 2rem; margin-bottom: 2rem;
+    }
+
+    /* Chatbot styles */
+    #chatbot-icon {
+      position: fixed; bottom: 24px; right: 24px;
+      font-size: 2rem; background: #007BFF; color: #fff;
+      border: none; border-radius: 50%; width: 56px; height: 56px;
+      cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform .2s;
+    }
+    #chatbot-icon:hover { transform: scale(1.1); }
+
+    #chatbot-widget {
+      position: fixed; bottom: 96px; right: 24px;
+      width: 320px; max-height: 400px; background: #fff;
+      border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      display: none; flex-direction: column; overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    #chatbot-header {
+      background: #007BFF; color: #fff; padding: 8px 12px;
+      font-weight: 700; display: flex; justify-content: space-between;
+      align-items: center;
+    }
+    #chatbot-messages {
+      flex: 1; padding: 8px; overflow-y: auto;
+    }
+    #chatbot-messages .message { margin-bottom: 8px; }
+    #chatbot-messages .message.user { text-align: right; }
+    #chatbot-form {
+      display: flex; border-top: 1px solid #eee;
+    }
+    #chatbot-input {
+      flex: 1; border: none; padding: 8px;
+    }
+    #chatbot-form button {
+      background: #007BFF; color: #fff; border: none;
+      padding: 0 12px; cursor: pointer;
     }
   </style>
 </head>
@@ -51,9 +76,9 @@
   <!-- Hero Section -->
   <header class="hero">
     <div class="text-center">
-      <h1 class="animated-hover">Alfa is Awesome!</h1>
-      <p class="lead">Pongpisit L. &#8211; Photographer</p>
-      <a href="#" class="btn btn-primary btn-lg btn-treats animated-hover">Send me treats</a>
+      <h1 class="animated-hover">Alfa is Super Awesome!</h1>
+      <p class="lead">Pongpisit L. &mdash; Photographer</p>
+      <a href="#" class="btn btn-lg btn-treats animated-hover">Send me treats</a>
     </div>
   </header>
 
@@ -67,7 +92,8 @@
         <p>I enjoy long walks, playing fetch, and swimming in the pool. I am a well-behaved and obedient dog who loves spending time with my human family and other dogs.</p>
       </div>
       <div class="col-md-6 text-center">
-        <img src="https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/b8ddb1440401539e58071241c6382a14.jpg" alt="Dog Portrait" class="img-fluid rounded">
+        <img src="https://pub-6e59080839c44d3ea91825f4e41120c4.r2.dev/alfaisawesome_files/b8ddb1440401539e58071241c6382a14.jpg"
+             alt="Dog Portrait" class="img-fluid rounded">
       </div>
     </section>
 
@@ -75,21 +101,75 @@
     <section>
       <h2 class="section-title text-center">Recent Swimming</h2>
       <div class="embed-responsive embed-responsive-16by9 mb-4">
-        <iframe class="embed-responsive-item" src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="embed-responsive-item"
+                src="https://customer-qk42hl151ydd8hk1.cloudflarestream.com/7ab37eaedf14978dc2ebe6333985cd54/iframe?muted=true&preload=true&loop=true&autoplay=true"
+                allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="text-center py-4">
-    <small>&copy; 2025 Pongpisit L. All rights reserved.</small>
-  </footer>
+  <!-- Chatbot Icon & Widget -->
+  <button id="chatbot-icon" title="Chat with AI">🤖</button>
+  <div id="chatbot-widget">
+    <div id="chatbot-header">
+      AI Chat <span id="chatbot-close" style="cursor:pointer;">✕</span>
+    </div>
+    <div id="chatbot-messages"></div>
+    <form id="chatbot-form">
+      <input type="text" id="chatbot-input" placeholder="Say something…" autocomplete="off" required>
+      <button type="submit">Send</button>
+    </form>
+  </div>
 
   <!-- Bootstrap JS & Dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Chatbot Front-end Logic -->
+  <script>
+    const icon    = document.getElementById('chatbot-icon');
+    const widget  = document.getElementById('chatbot-widget');
+    const closeBtn= document.getElementById('chatbot-close');
+    const form    = document.getElementById('chatbot-form');
+    const input   = document.getElementById('chatbot-input');
+    const messages= document.getElementById('chatbot-messages');
+
+    // ← replace with your published Worker URL:
+    const ENDPOINT = 'https://YOUR_WORKER_SUBDOMAIN.workers.dev';
+
+    icon.addEventListener('click',  () => widget.style.display = 'flex');
+    closeBtn.addEventListener('click', () => widget.style.display = 'none');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      appendMsg('user', text);
+      input.value = '';
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+        const { reply } = await res.json();
+        appendMsg('bot', reply);
+      } catch (err) {
+        appendMsg('bot', '💥 Error, please try again.');
+        console.error(err);
+      }
+    });
+
+    function appendMsg(who, text) {
+      const div = document.createElement('div');
+      div.className = 'message ' + who;
+      div.textContent = text;
+      messages.append(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
 </body>
 </html>
-
