@@ -159,7 +159,7 @@
       if (!prompt) return;
       append('You', prompt);
       input.value = '';
-      const placeholder = append('AI', '...');
+      const placeholder = append('AIFA', '...');
 
       try {
         const res = await fetch('/api/chat', {
@@ -176,7 +176,7 @@
           const { done, value } = await reader.read();
           if (done) break;
           buf += dec.decode(value, { stream: true });
-          placeholder.innerHTML = `<strong>AI(FA):</strong> ${buf}`;
+          placeholder.innerHTML = `<strong>AIFA:</strong> ${buf}`;
           msgs.scrollTop = msgs.scrollHeight;
         }
       } catch (err) {
